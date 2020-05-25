@@ -132,12 +132,8 @@ void QmlObjectListModel::move(int from, int to)
         // beginMoveRows() documentation and implementation specificity:
         // https://doc.qt.io/qt-5/qabstractitemmodel.html#beginMoveRows
         // (see 3rd picture explanation there)
-        if(from == to - 1) {
-            to = from++;
-        }
-        beginMoveRows(QModelIndex(), from, from, QModelIndex(), to);
-        _objectList.move(from, to);
-        endMoveRows();
+        
+        insert(to, removeFrom(from));
     }
 }
 
